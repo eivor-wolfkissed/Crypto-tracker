@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,41 +9,49 @@
     background-color: var(--black);
 }
 
-.logo{
+.logo {
     font-size: 1.5rem;
 }
 
-.links{
+.links {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1.5rem;
+    cursor: pointer;
 }
 
-.link{
+.link {
     color: var(--grey);
     font-weight: 500;
     font-size: 1rem;
 }
 
-.link:hover{
+.link:hover {
     color: var(--white);
     transition: all 0.3s;
 }
 
+/* Default styles for the drawer */
+.drawer-div {
+    display: none; /* Hide the drawer by default */
+}
+
+/* Mobile styles */
 @media only screen and (max-width: 768px) {
     .links {
         display: none;
     }
-    .mobile-drawer{
+    .mobile-drawer {
         display: block;
     }
 
-    .link{
+    .link {
         font-size: 1rem;
     }
 
-    .drawer-div{
+    .drawer-div {
+        display: block; /* Show the drawer when screen size is <= 768px */
         width: 40vw;
         background-color: var(--black);
         height: 100vh;

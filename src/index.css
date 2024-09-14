@@ -10,25 +10,25 @@
   --red: #f94141;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
-body{
+body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Inter", sans-serif; /* Moved Inter to the first position */
   -webkit-font-smoothing: antialiased;
-  -moz-DSX-font-smothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; /* Fixed typo from -moz-DSX to -moz-osx */
   background-color: var(--black);
   color: var(--white);
-  font-family: "Inter", sans-serif;
 }
 
-::selection{
+::selection {
   background-color: var(--blue);
   color: var(--white);
 }
-* width */
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 0.3rem;
 }
@@ -49,24 +49,42 @@ body{
   background: #555;
 }
 
-a{
+a {
   color: var(--white) !important;
   text-decoration: none !important;
 }
 
-.grey-wrapper{
+.grey-wrapper {
   display: block;
   width: 90%;
   background-color: var(--darkgrey);
   margin: 1.5rem auto;
   border-radius: 0.5rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 
-.coins-days-flex{
+.coins-days-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin: 1.5rem;
   gap: 2rem;
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] {
+  --black: #111;
+  --white: #f3f3f3;
+  --darkgrey: #1b1b1b;
+  --blue: #3a80e9;
+  --grey: #888;
+}
+
+/* Light Mode Styles */
+[data-theme="light"] {
+  --black: #f3f3f3; /* Light background color */
+  --white: #111; /* Dark text color */
+  --darkgrey: #d9d9d9; /* Lighter grey for better contrast */
+  --blue: #3a80e9;
+  --grey: #555;
 }

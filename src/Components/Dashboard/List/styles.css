@@ -1,13 +1,13 @@
 .list-row{
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
-    margin: 2rem 1.5rem;
+    margin: 2rem ;
     padding: 1rem;
     border-radius: 1rem;
-    margin-right: 5rem;
+    /*margin-right: 5rem;*/
 }
 
 .list-row:hover{

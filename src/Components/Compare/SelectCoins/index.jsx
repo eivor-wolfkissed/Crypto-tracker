@@ -1,64 +1,80 @@
 import React, { useEffect, useState } from "react";
-import get100Coins from "../../../functions/get100Coins";
-import Coin from "../../../pages/Coin";
+import { get100Coins } from "../../../functions/get100Coins";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select"
-import "./styles.css"
+import Select from "@mui/material/Select";
+import "./styles.css";
 
-function SelectCoins({crypto1, crypto2, handleCoinChange}) {
+function SelectCoins({ crypto1, crypto2, handleCoinChange }) {
+  const [allCoins, setAllCoins] = useState([]);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
-    const [allCoins, setAllCoins] = useState([])
+  const styles = {
+    height: "2.5rem",
+    color: "var(--white)",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "var(--white)",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "var(--white)",
+    },
+    "&:hover": {
+      "&& fieldset": {
+        borderColor: "#3a80e9",
+      },
+    },
+  };
 
-        const styles =
-                {
-                    height: "2.5rem",
-                    color: "var(--white)",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "var(--white)",
-                    },
-                    "& .MuiSvgIcon-root": {
-                        color: "var(--white)",
-                    },
-                    "&:hover": {
-                        "&& fieldset": {
-                        borderColor: "#3a80e9",
-                        },
-                    },
-                }
+  useEffect(() => {
+    getData();
+  }, []);
 
-                useEffect(() => {
-                    getData()
-                }, [])
+  async function getData() {
+    try {
+      const myCoins = await get100Coins();
+      setAllCoins(myCoins);
+    } catch (error) {
+      console.error("Error fetching coins: ", error);
+    } finally {
+      setLoading(false); // Set loading to false after fetching data
+    }
+  }
 
-                async function getData(){
-                    const myCoins = await get100Coins()
-                    setAllCoins(myCoins)
-                }
+  // Render a loading message or skeleton while data is being fetched
+  if (loading) {
+    return <p>Loading coins...</p>;
+  }
 
-    return(
-        <div className="coins-flex">
-            <p>Crypto 1</p>
-            <Select
-            sx = {styles}
-            value={crypto1}
-            label="Days"
-            OnChange={(event) => handleCoinChange(event, false)}
-            >
-                {allCoins.filter((item) => item.id !=crypto2) .map((coin, i) =>            ( <MenuItem key={i} value={coin.id}>{coin.name}</MenuItem>))}
-            </Select>
+  return (
+    <div className="coins-flex">
+      <p>Crypto 1</p>
+      <Select
+        onChange={(event) => handleCoinChange(event, false)}
+        sx={styles}
+        value={crypto1}
+        label="Crypto 1"
+      >
+        {allCoins.map((coin, i) => (
+          <MenuItem key={i} value={coin.id}>
+            {coin.name}
+          </MenuItem>
+        ))}
+      </Select>
 
-            <p>Crypto 2</p>
-            <Select
-            sx = {styles}
-            value={crypto2}
-            label="Days"
-            OnChange={(event) => handleCoinChange(event, true)}
-            >
-                {allCoins.filter((item) => item.id != crypto1) .map((coin,i)=>             (<MenuItem value={coin.id}>7 Days</MenuItem>))}
-            </Select>
-        </div>
-        
-    )
+      <p>Crypto 2</p>
+      <Select
+        onChange={(event) => handleCoinChange(event, true)}
+        sx={styles}
+        value={crypto2}
+        label="Crypto 2"
+      >
+        {allCoins.map((coin, i) => (
+          <MenuItem key={i} value={coin.id}>
+            {coin.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </div>
+  );
 }
 
-export default SelectCoins
+export default SelectCoins;

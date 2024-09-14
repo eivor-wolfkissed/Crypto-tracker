@@ -7,19 +7,21 @@ import { Link } from "@mui/material";
 function Header () {
     return(
         <div className="navbar ">
+            <a href= "/#">
             <h1 className="logo">
                 CryptoTracker<span style={{color: "var(--blue)"}}>.</span>
             </h1>
+            </a>
             <div className="links">
-                <Link to ="#">
+                <a href="/#">
                     <p className="links">Home</p>
-                </Link>
-                <Link to ="/compare">
+                </a>
+                <a href="/compare">
                     <p className="links">Compare</p>
-                </Link>
-                <Link to ="/">
-                    <p className="links">Watchlist</p>
-                </Link>
+                </a>
+                <a href="/dashboard">
+                <p className="links">Dashboard</p>
+                </a>
                 <Link to ="/dashboard">
                     <Button text = {"Share"} 
                     oulined={true}
