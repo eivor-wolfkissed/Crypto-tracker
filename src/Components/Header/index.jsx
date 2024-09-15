@@ -1,10 +1,43 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import "./styles.css";
 import TemporaryDrawer from "./Drawer";
 import Button from "../Common/Button";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; 
+import { Switch } from "@mui/material";
 
 function Header() {
+
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark" ? true : false
+    );
+
+    useEffect(() => {
+        if (localStorage.getItem("theme") === "dark") {
+            setDark();
+        } else {
+            setLight();
+        }
+    }, []);
+
+    const changeMode = () => {
+        if (darkMode) {
+            setLight();
+        } else {
+            setDark();
+        }
+        setDarkMode(!darkMode);
+    };
+
+    const setDark = () => {
+        localStorage.setItem("theme", "dark");
+        document.documentElement.setAttribute("data-theme", "dark");
+    };
+
+    const setLight = () => {
+        localStorage.setItem("theme", "light");
+        document.documentElement.setAttribute("data-theme", "light");
+    };
+
     return (
         <div className="navbar">
             <Link to="/">
@@ -30,6 +63,12 @@ function Header() {
                     />
                 </Link>
             </div>
+
+            <div style={{ marginLeft: '0' }} className="switch">
+    <Switch checked={darkMode} onChange={changeMode} />
+</div>
+
+
             <div className="mobile-drawer">
                 <TemporaryDrawer />
             </div>

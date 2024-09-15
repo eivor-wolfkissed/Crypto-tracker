@@ -1,4 +1,5 @@
-.navbar{
+/* General styling for the navbar */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,11 +10,11 @@
     background-color: var(--black);
 }
 
-.logo{
+.logo {
     font-size: 1.5rem;
 }
 
-.links{
+.links {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -21,33 +22,56 @@
     cursor: pointer;
 }
 
-.link{
+.link {
     color: var(--grey);
     font-weight: 500;
     font-size: 1rem;
 }
 
-.link:hover{
+.link:hover {
     color: var(--white);
     transition: all 0.3s;
 }
 
+/* Hide the switch by default (for screens less than 768px) */
+.switch {
+    display: none;
+}
+
+/* Show the switch and hide the drawer for screens greater than 768px */
+@media only screen and (min-width: 769px) {
+    .switch {
+        display: block; /* Show the switch on larger screens */
+    }
+
+    .mobile-drawer {
+        display: none; /* Hide the drawer icon on larger screens */
+    }
+}
+
+/* For screens 768px and smaller */
 @media only screen and (max-width: 768px) {
     .links {
         display: none;
     }
-    .mobile-drawer{
-        display: block;
+
+    .mobile-drawer {
+        display: block; /* Show the drawer icon on smaller screens */
     }
 
-    .link{
+    .link {
         font-size: 1rem;
     }
 
-    .drawer-div{
-        width: 40vw;
+    .drawer-div {
+        width: 20vw;
         background-color: var(--black);
         height: 100vh;
         padding: 1.5rem;
+    }
+
+    /* Ensure the switch is hidden on smaller screens */
+    .switch {
+        display: none; /* Hide the switch on smaller screens */
     }
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { IconButton, Switch } from "@mui/material";
-//import { toast } from "react-toastify"; // Uncomment if you are using this
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {
@@ -26,7 +25,6 @@ export default function TemporaryDrawer() {
             setDark();
         }
         setDarkMode(!darkMode);
-        toast.success("Theme Changed!"); // Ensure toast notifications are working
     };
 
     const setDark = () => {
@@ -52,15 +50,12 @@ export default function TemporaryDrawer() {
                     <Link to="/compare">
                         <p className="link">Compare</p>
                     </Link>
-                    <Link to="/watchlist">
-                        <p className="link">Watchlist</p>
-                    </Link>
                     <Link to="/dashboard">
                         <p className="link">Dashboard</p>
                     </Link>
                     {/* Dark Mode Toggle */}
                     <div style={{ marginTop: '1rem' }}>
-                        <p className="link">Dark Mode</p>
+                        <p className="link">{darkMode ? "Dark Mode" : "Light Mode"}</p>
                         <Switch checked={darkMode} onChange={changeMode} />
                     </div>
                 </div>
